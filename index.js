@@ -1,5 +1,5 @@
 const fs = require('fs');
-let times = 0;
+let times = -1;
 let beginTime = 0;
 let endTime = 0;
 let timeSubFor1000 = 0;
@@ -7,16 +7,17 @@ class testPlugin {
   constructor() {
   }
   apply(compiler) {
-    compiler.plugin('compile', function (params) {
-      if (times === 0) {
-        console.log('\n\n begin test')
+    compiler.plugin('compile', () => {
+      times++;
+      console.log(`\n\n it is the ${times} times`)
+      console.log('——————compile')
+      if (times === 5) {
         beginTime = new Date().getTime();
       }
-    })
-    compiler.plugin('done', function (stats) {
-      console.log('\n\n done times', times)
-      if (times < 100) {
-        times++;
+    });
+    compiler.plugin('done', () => {
+      console.log('——————done')
+      if (times < 105) {
         fs.writeFileSync('/Users/yuxinhuo/MTPro/fe.seagull/client/page/pushOrder/privilege/index.jsx', '\n');
         // compiler.hooks.compile.tap();
         return;
