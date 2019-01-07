@@ -17,7 +17,7 @@ class testPlugin {
     });
     compiler.plugin('done', () => {
       console.log('——————done')
-      if (times < 105) {
+      if (times < 104) {
         fs.writeFileSync('/Users/yuxinhuo/MTPro/fe.seagull/client/page/pushOrder/privilege/index.jsx', '\n');
         // compiler.hooks.compile.tap();
         return;
